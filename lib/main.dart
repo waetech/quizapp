@@ -1,51 +1,60 @@
 import 'package:flutter/material.dart';
 
+
+import './quiz.dart';
+import './result.dart';
+
 void main(){
  runApp(MyApp());
 }
 
 
-class MyApp extends StatelessWidget {
-  var questionIndex = 0;
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
 
-  void answerQuestion() {
-    questionIndex = questionIndex + 1;
-    print(questionIndex);
+class _MyAppState extends State<MyApp> {
+  final _questions = const [
+    {'questionText': 'What\'s your favorite color?', 'answers': [
+      'Black', 'Red', 'Green', 'White'
+    ],},
+    {'questionText': 'What\'s your favorite animal', 'answers': [
+      'Cat', 'Dog', 'Rabbit', 'Bird'
+    ],},
+    {'questionText': 'What is your favorite music?', 'answers': [
+      'Jazz', 'Rock', 'Indie', 'Folk'
+    ],},
+  ];
+
+  var _questionIndex = 0;
+
+  void _answerQuestion() {
+
+
+    setState(() {
+      _questionIndex = _questionIndex + 1;
+    });
+    print(_questionIndex);
+    if (_questionIndex < _questions.length) {
+      print('We have more questions!');
+    } else {
+      print('No more questions!');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
-      'What\'s your favorite color?',
-      'What\'s your favorite animal'
-    ];
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('My app'),
         ),
-          body: Column(children: <Widget>[
-            Text(
-              questions[questionIndex],
-            ),
-            RaisedButton(
-                child: Text('Answer 1'),
-                onPressed: answerQuestion,
-            ),
-            RaisedButton(
-                child: Text('Answer 2'),
-                onPressed: () => print('Answer 2 chosen!'),
-            ),
-            RaisedButton(
-              child: Text('Answer 3'),
-              onPressed: () {
-               //print something
-                print('Answer 3 chosen');
-              },
-            ),
-          ],
-          ),
-        ),
+        body: _questionIndex < _questions.length
+            ? Quiz(answerQuestion: _answerQuestion, questionIndex: _questionIndex, questions: _questions)
+            : Result(),
+      ),
     );
   }
 }
