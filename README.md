@@ -1,6 +1,6 @@
 # quizapp
 
-A new Flutter application.
+Building a programmer quiz app to determine if you're really interested in becoming a Software Developer. The quiz scores your answers to see if your results match your attitude. Personal challenge.
 
 ## Getting Started
 
