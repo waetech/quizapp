@@ -16,21 +16,32 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _questions = const [
-    {'questionText': 'What\'s your favorite color?', 'answers': [
-      'Black', 'Red', 'Green', 'White'
+    {'questionText': 'How do you feel about programming?', 'answers': [
+      {'text': 'Super Excited', 'score':  100},
+      {'text': 'Motivated', 'score': 80},
+      {'text': 'Somewhat excited', 'score': 40},
+      {'text': 'Okay', 'score': 10},
     ],},
-    {'questionText': 'What\'s your favorite animal', 'answers': [
-      'Cat', 'Dog', 'Rabbit', 'Bird'
+    {'questionText': 'How often do you practice coding?', 'answers': [
+      {'text': 'Everyday if I could', 'score': 100},
+      {'text': 'Every other day', 'score': 80},
+      {'text': 'A few days here and there', 'score': 30},
+      {'text': 'When I get the chance', 'score': 20},
     ],},
-    {'questionText': 'What is your favorite music?', 'answers': [
-      'Jazz', 'Rock', 'Indie', 'Folk'
+    {'questionText': 'What are your goals in the next 3-5 months?', 'answers': [
+      {'text': 'To get a job as a Software Engineer', 'score': 100},
+      {'text': 'To build a digital product', 'score': 90},
+      {'text': 'To be a millionaire', 'score': 20},
+      {'text': 'I don\'t, know', 'score': 10},
     ],},
   ];
 
   var _questionIndex = 0;
+  var _totalScore = 0;
 
-  void _answerQuestion() {
+  void _answerQuestion(int score) {
 
+    _totalScore = _totalScore + score;
 
     setState(() {
       _questionIndex = _questionIndex + 1;
@@ -52,8 +63,11 @@ class _MyAppState extends State<MyApp> {
           title: Text('My app'),
         ),
         body: _questionIndex < _questions.length
-            ? Quiz(answerQuestion: _answerQuestion, questionIndex: _questionIndex, questions: _questions)
-            : Result(),
+            ? Quiz(
+            answerQuestion: _answerQuestion,
+            questionIndex: _questionIndex,
+            questions: _questions)
+            : Result(_totalScore),
       ),
     );
   }
