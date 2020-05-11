@@ -34,6 +34,23 @@ class _MyAppState extends State<MyApp> {
       {'text': 'To be a millionaire', 'score': 20},
       {'text': 'I don\'t, know', 'score': 10},
     ],},
+    {'questionText': 'How strong do you know Flutter?', 'answers':[
+      {'text': 'Very well', 'score': 100},
+      {'text': 'Quite strongly', 'answers': 70},
+      {'text': 'Average', 'score': 30},
+      {'text': 'Just started', 'score': 10},
+    ],},
+    {'questionText': 'Where do see yourself in the next 5 years?', 'answers':[
+      {'text': 'In a Senior position', 'score': 100},
+      {'text': 'In another start-up', 'score': 60},
+      {'text': 'Chilling out', 'score': 10},
+    ],},
+    {'questionText': 'What can you add to the Scaffold Widget?', 'answers': [
+      {'text': 'banner', 'score': 20},
+      {'text': 'build method', 'score': 0},
+      {'text': 'background color', 'score': 20},
+      {'text': 'snack bars', 'score': 20},
+    ],},
   ];
 
   var _questionIndex = 0;
